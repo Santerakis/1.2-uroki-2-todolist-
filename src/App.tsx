@@ -11,16 +11,22 @@ function App() {
         {id: 4, title: "Rest API", isDone: false},
         {id: 5, title: "GraphQL", isDone: false}
     ])
-
     function removeTask(id: number) {
         let filteredTasks = tasks.filter(task => task.id !== id)
         setTasks(filteredTasks)
     }
+        let [filter, setFilter] = useState('complete')
+        let tasksForTodoList = tasks //здесь храним отформатированные таски
+        if (filter === 'active') {
+            tasksForTodoList = tasks.filter(task => task.isDone === false)}
+        if (filter === 'complete') {
+            tasksForTodoList = tasks.filter(task => task.isDone === true)}
+
 
     return (
         <div className="App">
             <Todolist title="What to learn"
-                      tasks={tasks}
+                      tasks={tasksForTodoList}
                       removeTask={removeTask}
             />
         </div>
